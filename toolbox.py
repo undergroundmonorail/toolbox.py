@@ -40,6 +40,15 @@ def prime_gen(n=2, max=float('inf')):
 		n += 2
 
 @cache
+def nth_prime(n):
+	a = 1
+	while n:
+		a += 1
+		if is_prime(a):
+			n -= 1
+	return a
+
+@cache
 def factors(n):
 	"""Returns a set of all factors of n, including 1 and itself"""
 	return set(reduce(list.__add__,([i,n/i]for i in xrange(1,int(math.sqrt(n))+1)if not n%i)))
