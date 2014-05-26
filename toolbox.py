@@ -2,6 +2,7 @@
 
 import math
 import random
+import operator
 
 class cache(object):
 	"""A cache for functions. To use, define function like this:
@@ -11,6 +12,10 @@ class cache(object):
 		pass
 	
 	"""
+	# This thing eats docstrings for breakfast
+	# I read a way to fix that on the internet, and then immediately forgot
+	# One day I'll find it again
+	
 	c = {}
 	
 	def __init__(self, f):
@@ -51,6 +56,8 @@ def nth_prime(n):
 @cache
 def factors(n):
 	"""Returns a set of all factors of n, including 1 and itself"""
+	# i got this off the internet and have only a rough idea of how it works
+	# but it's fast so lmao who cares
 	return set(reduce(list.__add__,([i,n/i]for i in xrange(1,int(math.sqrt(n))+1)if not n%i)))
 
 def weighted_rng(weights, values):
@@ -78,6 +85,10 @@ def weighted_rng(weights, values):
 	n = random.randint(1, max(weights))
 	
 	return values[weights.index(min(filter(lambda i: i >= n, weights)))]
+
+def product(l):
+	"""Returns the product of all elements in the list"""
+	return reduce(operator.mul, l, 1)
 
 if __name__ == '__main__':
 	print ('You aren\'t using this right! Try adding this file to your '
