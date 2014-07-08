@@ -25,7 +25,6 @@ class cache(object):
 		self.c = {}
 		functools.update_wrapper(self, f)
 	
-	@functools.wraps
 	def __call__(self, *args):
 		if args not in self.c:
 			self.c[args] = self.f(*args)
