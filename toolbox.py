@@ -20,14 +20,12 @@ class cache(object):
 		pass
 	
 	"""
-	# This thing eats docstrings for breakfast
-	# I read a way to fix that on the internet, and then immediately forgot
-	# One day I'll find it again
-	
 	def __init__(self, f):
 		self.f = f
 		self.c = {}
+		functools.update_wrapper(self, f)
 	
+	@functools.wraps
 	def __call__(self, *args):
 		if args not in self.c:
 			self.c[args] = self.f(*args)
