@@ -1,13 +1,16 @@
 import math
 import random
 import operator
+import functools
 
 # Python 2 and 3 compatibility
 try:
+	# We're in Python 2, redefine range() and input()
 	range = xrange
 	input = raw_input
 except NameError:
-	pass
+	# We're in Python 3, get reduce() from functools
+	reduce = functools.reduce
 
 class cache(object):
 	"""A cache for functions. To use, define function like this:
